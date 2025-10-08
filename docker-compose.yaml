@@ -6,8 +6,6 @@ services:
     container_name: dev-burguer-app
     ports:
       - "3001:3001"
-    env_file:
-      - .env
     environment:
       - DB_DIALECT=postgres
       - DB_HOST=db_postgres
@@ -50,3 +48,4 @@ services:
 volumes:
   pgdata:
   mongodata:
+
