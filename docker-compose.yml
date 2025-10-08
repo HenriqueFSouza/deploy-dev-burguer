@@ -4,14 +4,17 @@ services:
     container_name: dev-burguer-app
     ports:
       - "3001:3001"
+    env_file:
+      - .env
     environment:
-      - DB_DIALECT=postgres
-      - DB_HOST=db_postgres
-      - DB_PORT=5432
-      - DB_USERNAME=admin
-      - DB_PASSWORD=123456
-      - DB_DATABASE=dev-burger-db
-      - MONGO_URL=mongodb://admin:123456@db_mongo:27017/dev-burguer-db
+      - NODE_ENV=${NODE_ENV}
+      - DB_DIALECT=${DB_DIALECT}
+      - DB_HOST=${DB_HOST}
+      - DB_PORT=${DB_PORT}
+      - DB_USERNAME=${DB_USERNAME}
+      - DB_PASSWORD=${DB_PASSWORD}
+      - DB_DATABASE=${DB_DATABASE}   # verifique nome consistente
+      - MONGO_URL=${MONGO_URL}
       - PORT=3001
     depends_on:
       - db_postgres
@@ -25,9 +28,9 @@ services:
     env_file:
       - .env
     environment:
-      POSTGRES_USER: admin
-      POSTGRES_PASSWORD: 123456
-      POSTGRES_DB: dev-burguer-db
+      POSTGRES_USER: ${DB_USERNAME}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_DB: ${DB_DATABASE}
     volumes:
       - pgdata:/var/lib/postgresql/data
 
@@ -38,14 +41,15 @@ services:
     env_file:
       - .env
     environment:
-      MONGO_INITDB_ROOT_USERNAME: admin
-      MONGO_INITDB_ROOT_PASSWORD: 123456
+MONGO_INITDB_ROOT_USERNAME: ${MONGO_INITDB_ROOT_USERNAME}
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_INITDB_ROOT_PASSWORD}
     volumes:
       - mongodata:/data/db
 
 volumes:
   pgdata:
   mongodata:
+
 
 
 
