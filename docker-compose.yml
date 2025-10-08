@@ -41,7 +41,7 @@ services:
     env_file:
       - .env
     environment:
-MONGO_INITDB_ROOT_USERNAME: ${MONGO_INITDB_ROOT_USERNAME}
+      MONGO_INITDB_ROOT_USERNAME: ${MONGO_INITDB_ROOT_USERNAME}
       MONGO_INITDB_ROOT_PASSWORD: ${MONGO_INITDB_ROOT_PASSWORD}
     volumes:
       - mongodata:/data/db
@@ -49,6 +49,7 @@ MONGO_INITDB_ROOT_USERNAME: ${MONGO_INITDB_ROOT_USERNAME}
 volumes:
   pgdata:
   mongodata:
+
 
 
 
