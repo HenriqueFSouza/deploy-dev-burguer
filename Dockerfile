@@ -5,5 +5,6 @@ RUN npm install
 COPY . .
 ENV PORT=3001
 EXPOSE 3001
-CMD ["node","./src/server.js"]
+CMD npx sequelize-cli db:migrate && node ./src/server.js
+
 
